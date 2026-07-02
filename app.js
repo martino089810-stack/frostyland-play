@@ -405,6 +405,29 @@ function finalizarJuego(){
     .remove("oculto");
 
 }
+
+//====================================================
+// BOTÓN REINICIAR
+//====================================================
+
+// Esperar a que el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    const btnReiniciar = document.getElementById("btnReiniciar");
+    
+    if (btnReiniciar) {
+        btnReiniciar.onclick = function() {
+            // Reproducir sonido
+            if (sndClick) {
+                sndClick.play();
+            }
+            
+            // Recargar la página después de un pequeño retraso
+            setTimeout(function() {
+                window.location.reload();
+            }, 300);
+        };
+    }
+});
 //
 //====================================================
 
