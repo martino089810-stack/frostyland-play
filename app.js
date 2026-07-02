@@ -407,24 +407,16 @@ function finalizarJuego(){
 }
 
 //====================================================
-// BOTÓN REINICIAR
+// BOTÓN REINICIAR - Recargar la página
 //====================================================
 
-// Esperar a que el DOM esté listo
-document.addEventListener('DOMContentLoaded', function() {
-    const btnReiniciar = document.getElementById("btnReiniciar");
+document.getElementById("btnReiniciar").onclick = () => {
+    // Reproducir sonido de click
+    sndClick.play();
     
-    if (btnReiniciar) {
-        btnReiniciar.onclick = function() {
-            // Reproducir sonido
-            if (sndClick) {
-                sndClick.play();
-            }
-            
-            // Recargar la página después de un pequeño retraso
-            setTimeout(function() {
-                window.location.reload();
-            }, 300);
-        };
-    }
-});
+    // Pequeño retraso para que se escuche el sonido antes de recargar
+    setTimeout(() => {
+        // Recargar la página completamente
+        window.location.reload();
+    }, 300);
+};
