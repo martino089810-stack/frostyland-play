@@ -428,6 +428,3 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 });
-//
-//====================================================
-
