@@ -310,3 +310,30 @@ background:linear-gradient(90deg,#00c853,#4caf50);
 transition:.2s;
 
 }
+
+/* Asegurar que los botones en premio se vean correctamente */
+#premio .contenedor a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+#premio .contenedor button {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+#btnReiniciar {
+    background: linear-gradient(90deg, #667eea, #764ba2) !important;
+    color: white !important;
+}
+
+#btnReiniciar:hover {
+    transform: scale(1.03);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+#btnReiniciar:active {
+    transform: scale(0.97);
+}
