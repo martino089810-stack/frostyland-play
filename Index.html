@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Frostyland Play | Descongela el Boli</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div id="inicio" class="pantalla">
+
+    <div class="contenedor">
+
+        <img src="img/Logo-FrostylandV2.png" class="logo">
+
+        <h1>❄ FROSTYLAND PLAY ❄</h1>
+
+        <h2>DESCONGELA EL BOLI</h2>
+
+        <h3>BUBULUBÚ</h3>
+
+        <button id="btnInicio">
+
+            COMENZAR
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<div id="instrucciones" class="pantalla oculto">
+
+<div class="contenedor">
+
+<h2>📜 INSTRUCCIONES</h2>
+
+<p>
+
+🧊 Rompe completamente el hielo.
+
+</p>
+
+<p>
+
+🎁 Descubre tu premio.
+
+</p>
+
+<p>
+
+📸 Si ganas, toma captura.
+
+</p>
+
+<p>
+
+📲 Envíala por WhatsApp.
+
+</p>
+
+<p>
+
+🏆 Los primeros 3 ganan.
+
+</p>
+
+<div id="contador">
+
+01:00:00
+
+</div>
+
+<button id="btnJugar">
+
+ESTOY LISTO
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div id="juego" class="pantalla oculto">
+
+<div class="contenedor">
+    
+
+<h2>🧊 DESCONGELA EL BOLI</h2>
+
+<div id="zonaJuego">
+
+<img id="premioImagen">
+
+<canvas id="canvas" width="320" height="320"></canvas>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div id="barra">
+
+    <div id="progreso"></div>
+
+</div>
+
+<p id="porcentaje">0%</p>
+<div id="premio" class="pantalla oculto">
+
+<div class="contenedor">
+
+<img id="imagenPremio"
+
+width="180">
+
+<h2 id="tituloPremio"></h2>
+
+<p id="textoPremio"></p>
+
+<a
+
+id="whatsapp"
+
+target="_blank">
+
+<button>
+
+📲 ENVIAR CAPTURA
+
+</button>
+
+</a>
+
+</div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+
+</html>
