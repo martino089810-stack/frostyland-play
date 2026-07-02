@@ -44,7 +44,7 @@ premio.classList.remove("activa");
 const premios = [
     {
         nombre: "BOLI",
-        imagen: "img/premio-Boli.png",
+        imagen: "img/premio-boli.png",
         titulo: "¡¡FELICIDADES!!",
         texto: "Ganaste un Boli Bubulubú 🍧"
     },
