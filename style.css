@@ -311,22 +311,11 @@ transition:.2s;
 
 }
 
-/* Asegurar que los botones en premio se vean correctamente */
-#premio .contenedor a {
-    display: block;
-    width: 100%;
-    text-decoration: none;
-    margin-bottom: 10px;
-}
-
-#premio .contenedor button {
-    width: 100%;
-    margin-bottom: 0;
-}
-
+/* Estilo para el botón de reinicio */
 #btnReiniciar {
     background: linear-gradient(90deg, #667eea, #764ba2) !important;
     color: white !important;
+    margin-top: 12px;
 }
 
 #btnReiniciar:hover {
@@ -336,4 +325,10 @@ transition:.2s;
 
 #btnReiniciar:active {
     transform: scale(0.97);
+}
+
+#whatsapp {
+    display: block;
+    width: 100%;
+    text-decoration: none;
 }
