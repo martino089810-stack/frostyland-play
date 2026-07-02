@@ -407,16 +407,50 @@ function finalizarJuego(){
 }
 
 //====================================================
-// BOTÓN REINICIAR - Recargar la página
+// REINICIAR JUEGO COMPLETO
+//====================================================
+
+function reiniciarJuego() {
+    // 1. Resetear variables de estado
+    juegoFinalizado = false;
+    porcentajeDescubierto = 0;
+    raspando = false;
+    sonidoHielo = false;
+    
+    // 2. Detener todos los sonidos
+    sndIce.pause();
+    sndIce.currentTime = 0;
+    sndWin.pause();
+    sndWin.currentTime = 0;
+    sndLose.pause();
+    sndLose.currentTime = 0;
+    
+    // 3. Resetear UI
+    document.getElementById("progreso").style.width = "0%";
+    document.getElementById("porcentaje").innerHTML = "0%";
+    document.getElementById("premio").classList.add("oculto");
+    
+    // 4. Limpiar y redibujar el canvas con hielo completo
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.globalCompositeOperation = "source-over"; // Resetear modo de composición
+    ctx.drawImage(hielo, 0, 0, canvas.width, canvas.height);
+    
+    // 5. Resetear imagen del premio (opcional)
+    document.getElementById("premioImagen").src = "";
+    document.getElementById("tituloPremio").innerHTML = "";
+    document.getElementById("textoPremio").innerHTML = "";
+    
+    // 6. Mostrar pantalla de inicio
+    mostrarPantalla(inicio);
+}
+
+//====================================================
+// BOTÓN REINICIAR
 //====================================================
 
 document.getElementById("btnReiniciar").onclick = () => {
-    // Reproducir sonido de click
     sndClick.play();
-    
-    // Pequeño retraso para que se escuche el sonido antes de recargar
     setTimeout(() => {
-        // Recargar la página completamente
-        window.location.reload();
+        reiniciarJuego();
     }, 300);
 };
