@@ -44,18 +44,24 @@ premio.classList.remove("activa");
 const premios = [
     {
         nombre: "BOLI",
+        imagen: "img/premio-Boli.png",
         titulo: "¡¡FELICIDADES!!",
-        texto: "Ganaste un Boli Bubulubú 🍧"
+        texto: "Ganaste un Boli Bubulubú 🍧",
+        emoji: "🍧" // Emoji de respaldo
     },
     {
         nombre: "CUPON",
+        imagen: "img/premio-cupon.png",
         titulo: "¡¡GENIAL!!",
-        texto: "Ganaste un Cupón 2x1 🎁"
+        texto: "Ganaste un Cupón 2x1 🎁",
+        emoji: "🎁"
     },
     {
         nombre: "PERDER",
+        imagen: "img/premio-perder.png",
         titulo: "CASI LO LOGRAS",
-        texto: "Más suerte para la próxima ❄"
+        texto: "Más suerte para la próxima ❄",
+        emoji: "❄"
     }
 ];
 
