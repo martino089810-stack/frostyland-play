@@ -38,27 +38,31 @@ juego.classList.remove("activa");
 premio.classList.remove("activa");
 
 //====================================================
-// PREMIOS
+// PREMIOS - CON RUTAS CORREGIDAS
 //====================================================
+
+// DETECTAR SI ESTAMOS EN GITHUB PAGES
+const isGitHub = window.location.hostname.includes('github.io');
+const basePath = isGitHub ? '' : '';
 
 const premios = [
     {
         nombre: "BOLI",
-        imagen: "img/premio-boli.png",
+        imagen: `${basePath}img/premio-boli.png`,
         titulo: "¡¡FELICIDADES!!",
         texto: "Ganaste un Boli Bubulubú 🍧",
         emoji: "🍧"
     },
     {
         nombre: "CUPON",
-        imagen: "img/premio-cupon.png",
+        imagen: `${basePath}img/premio-cupon.png`,
         titulo: "¡¡GENIAL!!",
         texto: "Ganaste un Cupón 2x1 🎁",
         emoji: "🎁"
     },
     {
         nombre: "PERDER",
-        imagen: "img/premio-perder.png",
+        imagen: `${basePath}img/premio-perder.png`,
         titulo: "CASI LO LOGRAS",
         texto: "Más suerte para la próxima ❄",
         emoji: "❄"
@@ -87,17 +91,20 @@ function obtenerPremio() {
 //====================================================
 
 const mensaje = "Hola Frostyland 🍧, acabo de participar en Descongela el Boli. Aquí envío mi captura.";
-document.getElementById("whatsapp").href = "https://wa.me/5212228653619?text=" + encodeURIComponent(mensaje);
+const whatsappLink = document.getElementById("whatsapp");
+if (whatsappLink) {
+    whatsappLink.href = "https://wa.me/5212228653619?text=" + encodeURIComponent(mensaje);
+}
 
 //====================================================
 // CANVAS
 //====================================================
 
 const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+const ctx = canvas.getContext("2d", { willReadFrequently: true }); // ✅ Optimización
 
 const hielo = new Image();
-hielo.src = "img/hielo.png";
+hielo.src = `${basePath}img/hielo.png`;
 
 hielo.onload = function() {
     hieloCargado = true;
@@ -145,17 +152,28 @@ function reiniciarJuego() {
     sndLose.pause();
     sndLose.currentTime = 0;
     
-    document.getElementById("progreso").style.width = "0%";
-    document.getElementById("porcentaje").innerHTML = "0%";
-    document.getElementById("premio").classList.add("oculto");
+    const progreso = document.getElementById("progreso");
+    const porcentaje = document.getElementById("porcentaje");
+    if (progreso) progreso.style.width = "0%";
+    if (porcentaje) porcentaje.innerHTML = "0%";
+    
+    const premioDiv = document.getElementById("premio");
+    if (premioDiv) premioDiv.classList.add("oculto");
     
     // Resetear el canvas
     dibujarHielo();
     
     // Limpiar datos del premio
-    document.getElementById("premioImagen").src = "";
-    document.getElementById("tituloPremio").innerHTML = "";
-    document.getElementById("textoPremio").innerHTML = "";
+    const imgPremio = document.getElementById("imagenPremio");
+    if (imgPremio) {
+        imgPremio.src = "";
+        imgPremio.style.display = "none";
+    }
+    
+    const tituloPremio = document.getElementById("tituloPremio");
+    const textoPremio = document.getElementById("textoPremio");
+    if (tituloPremio) tituloPremio.innerHTML = "";
+    if (textoPremio) textoPremio.innerHTML = "";
     
     mostrarPantalla(inicio);
 }
@@ -164,53 +182,65 @@ function reiniciarJuego() {
 // BOTÓN COMENZAR
 //====================================================
 
-document.getElementById("btnInicio").onclick = () => {
-    sndClick.play();
-    setTimeout(() => {
-        mostrarPantalla(instrucciones);
-    }, 300);
-};
+const btnInicio = document.getElementById("btnInicio");
+if (btnInicio) {
+    btnInicio.onclick = () => {
+        sndClick.play();
+        setTimeout(() => {
+            mostrarPantalla(instrucciones);
+        }, 300);
+    };
+}
 
 //====================================================
 // BOTÓN ESTOY LISTO
 //====================================================
 
-document.getElementById("btnJugar").onclick = () => {
-    sndClick.play();
-    
-    premioActual = obtenerPremio();
-    
-    console.log("🎁 Premio obtenido:", premioActual);
-    console.log("🖼️ Ruta de imagen:", premioActual.imagen);
-    
-    // Guardar los datos del premio para mostrarlos después
-    // La imagen se asignará en finalizarJuego()
-    
-    juegoFinalizado = false;
-    porcentajeDescubierto = 0;
-    raspando = false;
-    sonidoHielo = false;
-    
-    document.getElementById("progreso").style.width = "0%";
-    document.getElementById("porcentaje").innerHTML = "0%";
-    document.getElementById("premio").classList.add("oculto");
-    
-    setTimeout(() => {
-        mostrarPantalla(juego);
-        dibujarHielo();
-    }, 400);
-};
+const btnJugar = document.getElementById("btnJugar");
+if (btnJugar) {
+    btnJugar.onclick = () => {
+        sndClick.play();
+        
+        premioActual = obtenerPremio();
+        
+        console.log("🎁 Premio obtenido:", premioActual);
+        console.log("🖼️ Ruta de imagen:", premioActual.imagen);
+        
+        juegoFinalizado = false;
+        porcentajeDescubierto = 0;
+        raspando = false;
+        sonidoHielo = false;
+        
+        const progreso = document.getElementById("progreso");
+        const porcentaje = document.getElementById("porcentaje");
+        if (progreso) progreso.style.width = "0%";
+        if (porcentaje) porcentaje.innerHTML = "0%";
+        
+        const premioDiv = document.getElementById("premio");
+        if (premioDiv) premioDiv.classList.add("oculto");
+        
+        setTimeout(() => {
+            mostrarPantalla(juego);
+            dibujarHielo();
+        }, 400);
+    };
+}
 
 //====================================================
-// BOTÓN REINICIAR
+// BOTÓN REINICIAR - CON VERIFICACIÓN DE EXISTENCIA
 //====================================================
 
-document.getElementById("btnReiniciar").onclick = () => {
-    sndClick.play();
-    setTimeout(() => {
-        reiniciarJuego();
-    }, 300);
-};
+const btnReiniciar = document.getElementById("btnReiniciar");
+if (btnReiniciar) {
+    btnReiniciar.onclick = () => {
+        sndClick.play();
+        setTimeout(() => {
+            reiniciarJuego();
+        }, 300);
+    };
+} else {
+    console.warn("⚠️ El botón 'btnReiniciar' no existe en el HTML");
+}
 
 //====================================================
 // EVENTOS DEL RASPADO
@@ -273,8 +303,10 @@ function raspar(e) {
     calcularRaspado();
     
     const porcentaje = Math.floor(porcentajeDescubierto * 100);
-    document.getElementById("progreso").style.width = porcentaje + "%";
-    document.getElementById("porcentaje").innerHTML = porcentaje + "%";
+    const progreso = document.getElementById("progreso");
+    const porcentajeEl = document.getElementById("porcentaje");
+    if (progreso) progreso.style.width = porcentaje + "%";
+    if (porcentajeEl) porcentajeEl.innerHTML = porcentaje + "%";
     
     if (porcentajeDescubierto >= 0.70 && !juegoFinalizado) {
         finalizarJuego();
@@ -299,7 +331,7 @@ function calcularRaspado() {
 }
 
 //====================================================
-// FINALIZAR JUEGO - AQUÍ ESTABA EL PROBLEMA
+// FINALIZAR JUEGO - CON SOPORTE PARA IMÁGENES
 //====================================================
 
 function finalizarJuego() {
@@ -310,34 +342,61 @@ function finalizarJuego() {
     sndIce.currentTime = 0;
     sonidoHielo = false;
     
-    // ✅ AQUÍ ASIGNAMOS LA IMAGEN DEL PREMIO
-    const imgPremio = document.getElementById("premioImagen");
-    imgPremio.src = premioActual.imagen;
-    imgPremio.alt = premioActual.nombre;
-    imgPremio.style.display = 'block'; // Asegurar que sea visible
+    // Obtener elementos
+    const imgPremio = document.getElementById("imagenPremio");
+    const emojiFallback = document.getElementById("premio-emoji");
+    const loadingText = document.getElementById("premio-loading");
     
-    // Verificar si la imagen cargó
-    imgPremio.onload = function() {
-        console.log("✅ Imagen cargada correctamente:", premioActual.imagen);
-    };
-    imgPremio.onerror = function() {
-        console.error("❌ Error al cargar la imagen:", premioActual.imagen);
-        // Si no carga, mostrar el emoji como respaldo
-        imgPremio.style.display = 'none';
-        // Verificar si ya existe un fallback
-        let fallback = document.getElementById('fallback-emoji');
-        if (!fallback) {
-            fallback = document.createElement('div');
-            fallback.id = 'fallback-emoji';
-            fallback.style.cssText = 'font-size: 100px; text-align: center; padding: 20px 0;';
-            fallback.textContent = premioActual.emoji || '🎉';
-            imgPremio.parentNode.insertBefore(fallback, imgPremio.nextSibling);
+    // Ocultar loading
+    if (loadingText) loadingText.style.display = 'none';
+    
+    // Configurar la imagen
+    if (imgPremio) {
+        imgPremio.src = premioActual.imagen;
+        imgPremio.alt = premioActual.nombre;
+        imgPremio.style.display = 'block';
+        
+        // Cuando la imagen carga correctamente
+        imgPremio.onload = function() {
+            console.log("✅ Imagen cargada:", premioActual.imagen);
+            imgPremio.style.display = 'block';
+            if (emojiFallback) emojiFallback.style.display = 'none';
+            if (loadingText) loadingText.style.display = 'none';
+        };
+        
+        // Si la imagen falla
+        imgPremio.onerror = function() {
+            console.error("❌ Error al cargar:", premioActual.imagen);
+            imgPremio.style.display = 'none';
+            // Mostrar emoji como respaldo
+            if (emojiFallback) {
+                emojiFallback.textContent = premioActual.emoji || '🎉';
+                emojiFallback.style.display = 'block';
+            }
+            if (loadingText) loadingText.style.display = 'none';
+        };
+        
+        // Forzar recarga si la imagen ya estaba en caché
+        if (imgPremio.complete) {
+            if (imgPremio.naturalHeight === 0) {
+                imgPremio.onerror();
+            } else {
+                imgPremio.onload();
+            }
         }
-    };
+    } else {
+        // Si no hay elemento img, mostrar emoji directamente
+        if (emojiFallback) {
+            emojiFallback.textContent = premioActual.emoji || '🎉';
+            emojiFallback.style.display = 'block';
+        }
+    }
     
     // Asignar título y texto
-    document.getElementById("tituloPremio").innerHTML = premioActual.titulo;
-    document.getElementById("textoPremio").innerHTML = premioActual.texto;
+    const tituloPremio = document.getElementById("tituloPremio");
+    const textoPremio = document.getElementById("textoPremio");
+    if (tituloPremio) tituloPremio.innerHTML = premioActual.titulo;
+    if (textoPremio) textoPremio.innerHTML = premioActual.texto;
     
     // Reproducir sonido
     if (premioActual && premioActual.nombre === "PERDER") {
@@ -348,7 +407,8 @@ function finalizarJuego() {
     
     // Mostrar la pantalla de premio
     setTimeout(() => {
-        document.getElementById("premio").classList.remove("oculto");
+        const premioDiv = document.getElementById("premio");
+        if (premioDiv) premioDiv.classList.remove("oculto");
     }, 500);
 }
 
@@ -357,3 +417,4 @@ function finalizarJuego() {
 //====================================================
 
 console.log("🎮 Frostyland Play - ¡Listo para jugar!");
+console.log("📁 Modo:", isGitHub ? "GitHub Pages" : "Local");
