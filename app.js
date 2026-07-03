@@ -174,25 +174,30 @@ document.getElementById("btnJugar").onclick = () => {
     
     premioActual = obtenerPremio();
     
-    document.getElementById("premioImagen").src = premioActual.imagen;
+    // 🔍 LOG PARA DEPURAR
+    console.log("Premio obtenido:", premioActual);
+    console.log("Ruta de imagen:", premioActual.imagen);
+    
+    // Asignar la imagen
+    const imgPremio = document.getElementById("premioImagen");
+    imgPremio.src = premioActual.imagen;
+    imgPremio.alt = premioActual.nombre;
+    
+    // 🔍 Verificar si la imagen cargó
+    imgPremio.onload = function() {
+        console.log("✅ Imagen cargada correctamente:", premioActual.imagen);
+    };
+    imgPremio.onerror = function() {
+        console.error("❌ Error al cargar la imagen:", premioActual.imagen);
+        // Mostrar un mensaje de error en la imagen
+        imgPremio.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Crect width='180' height='180' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' font-family='Arial' font-size='14' fill='%23999'%3EImagen no encontrada%3C/text%3E%3C/svg%3E";
+    };
+    
     document.getElementById("tituloPremio").innerHTML = premioActual.titulo;
     document.getElementById("textoPremio").innerHTML = premioActual.texto;
     
-    juegoFinalizado = false;
-    porcentajeDescubierto = 0;
-    raspando = false;
-    sonidoHielo = false;
-    
-    document.getElementById("progreso").style.width = "0%";
-    document.getElementById("porcentaje").innerHTML = "0%";
-    document.getElementById("premio").classList.add("oculto");
-    
-    setTimeout(() => {
-        mostrarPantalla(juego);
-        dibujarHielo();
-    }, 400);
+    // ... resto del código
 };
-
 //====================================================
 // BOTÓN REINICIAR
 //====================================================
