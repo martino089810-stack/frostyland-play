@@ -47,7 +47,7 @@ const premios = [
         imagen: "img/premio-boli.png",
         titulo: "¡¡FELICIDADES!!",
         texto: "Ganaste un Boli Bubulubú 🍧",
-        emoji: "🍧" // Emoji de respaldo
+        emoji: "🍧"
     },
     {
         nombre: "CUPON",
@@ -180,30 +180,27 @@ document.getElementById("btnJugar").onclick = () => {
     
     premioActual = obtenerPremio();
     
-    // 🔍 LOG PARA DEPURAR
-    console.log("Premio obtenido:", premioActual);
-    console.log("Ruta de imagen:", premioActual.imagen);
+    console.log("🎁 Premio obtenido:", premioActual);
+    console.log("🖼️ Ruta de imagen:", premioActual.imagen);
     
-    // Asignar la imagen
-    const imgPremio = document.getElementById("premioImagen");
-    imgPremio.src = premioActual.imagen;
-    imgPremio.alt = premioActual.nombre;
+    // Guardar los datos del premio para mostrarlos después
+    // La imagen se asignará en finalizarJuego()
     
-    // 🔍 Verificar si la imagen cargó
-    imgPremio.onload = function() {
-        console.log("✅ Imagen cargada correctamente:", premioActual.imagen);
-    };
-    imgPremio.onerror = function() {
-        console.error("❌ Error al cargar la imagen:", premioActual.imagen);
-        // Mostrar un mensaje de error en la imagen
-        imgPremio.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Crect width='180' height='180' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' font-family='Arial' font-size='14' fill='%23999'%3EImagen no encontrada%3C/text%3E%3C/svg%3E";
-    };
+    juegoFinalizado = false;
+    porcentajeDescubierto = 0;
+    raspando = false;
+    sonidoHielo = false;
     
-    document.getElementById("tituloPremio").innerHTML = premioActual.titulo;
-    document.getElementById("textoPremio").innerHTML = premioActual.texto;
+    document.getElementById("progreso").style.width = "0%";
+    document.getElementById("porcentaje").innerHTML = "0%";
+    document.getElementById("premio").classList.add("oculto");
     
-    // ... resto del código
+    setTimeout(() => {
+        mostrarPantalla(juego);
+        dibujarHielo();
+    }, 400);
 };
+
 //====================================================
 // BOTÓN REINICIAR
 //====================================================
@@ -302,7 +299,7 @@ function calcularRaspado() {
 }
 
 //====================================================
-// FINALIZAR JUEGO
+// FINALIZAR JUEGO - AQUÍ ESTABA EL PROBLEMA
 //====================================================
 
 function finalizarJuego() {
@@ -313,12 +310,43 @@ function finalizarJuego() {
     sndIce.currentTime = 0;
     sonidoHielo = false;
     
+    // ✅ AQUÍ ASIGNAMOS LA IMAGEN DEL PREMIO
+    const imgPremio = document.getElementById("premioImagen");
+    imgPremio.src = premioActual.imagen;
+    imgPremio.alt = premioActual.nombre;
+    imgPremio.style.display = 'block'; // Asegurar que sea visible
+    
+    // Verificar si la imagen cargó
+    imgPremio.onload = function() {
+        console.log("✅ Imagen cargada correctamente:", premioActual.imagen);
+    };
+    imgPremio.onerror = function() {
+        console.error("❌ Error al cargar la imagen:", premioActual.imagen);
+        // Si no carga, mostrar el emoji como respaldo
+        imgPremio.style.display = 'none';
+        // Verificar si ya existe un fallback
+        let fallback = document.getElementById('fallback-emoji');
+        if (!fallback) {
+            fallback = document.createElement('div');
+            fallback.id = 'fallback-emoji';
+            fallback.style.cssText = 'font-size: 100px; text-align: center; padding: 20px 0;';
+            fallback.textContent = premioActual.emoji || '🎉';
+            imgPremio.parentNode.insertBefore(fallback, imgPremio.nextSibling);
+        }
+    };
+    
+    // Asignar título y texto
+    document.getElementById("tituloPremio").innerHTML = premioActual.titulo;
+    document.getElementById("textoPremio").innerHTML = premioActual.texto;
+    
+    // Reproducir sonido
     if (premioActual && premioActual.nombre === "PERDER") {
         sndLose.play();
     } else {
         sndWin.play();
     }
     
+    // Mostrar la pantalla de premio
     setTimeout(() => {
         document.getElementById("premio").classList.remove("oculto");
     }, 500);
