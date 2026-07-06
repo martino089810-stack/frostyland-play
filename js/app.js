@@ -215,7 +215,7 @@ canvas.addEventListener("touchstart", ()=>{
     sndIce.loop = true;
     sndIce.play();
 
-}, { passive:false });
+});
 
 window.addEventListener("touchend", ()=>{
 
@@ -227,7 +227,7 @@ window.addEventListener("touchend", ()=>{
 });
 canvas.addEventListener("mousemove", raspar);
 
-canvas.addEventListener("touchmove", raspar, { passive:false });
+canvas.addEventListener("touchmove", raspar);
 function raspar(e){
 
     if(!raspando || juegoFinalizado) return;
@@ -305,10 +305,7 @@ function finalizarJuego(){
         sndWin.play();
 
     }
-confetti({
-    particleCount:180,
-    spread:90
-});
+
 
     // WhatsApp
 
@@ -337,20 +334,8 @@ Adjunto mi captura.`;
 
 }
 
-function ajustarCanvas(){
-
-    const ancho = document.getElementById("zonaJuego").offsetWidth;
-
-    canvas.width = ancho;
-    canvas.height = ancho;
-
-    dibujarHielo();
-    window.addEventListener("resize", ajustarCanvas);
-
-}
 
 confetti({
     particleCount:180,
     spread:90
 });
-
