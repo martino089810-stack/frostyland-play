@@ -215,7 +215,7 @@ canvas.addEventListener("touchstart", ()=>{
     sndIce.loop = true;
     sndIce.play();
 
-});
+}, { passive:false });
 
 window.addEventListener("touchend", ()=>{
 
@@ -227,7 +227,7 @@ window.addEventListener("touchend", ()=>{
 });
 canvas.addEventListener("mousemove", raspar);
 
-canvas.addEventListener("touchmove", raspar);
+canvas.addEventListener("touchmove", raspar, { passive:false });
 function raspar(e){
 
     if(!raspando || juegoFinalizado) return;
