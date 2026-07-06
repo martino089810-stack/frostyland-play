@@ -305,7 +305,10 @@ function finalizarJuego(){
         sndWin.play();
 
     }
-
+confetti({
+    particleCount:180,
+    spread:90
+});
 
     // WhatsApp
 
@@ -334,8 +337,20 @@ Adjunto mi captura.`;
 
 }
 
+function ajustarCanvas(){
+
+    const ancho = document.getElementById("zonaJuego").offsetWidth;
+
+    canvas.width = ancho;
+    canvas.height = ancho;
+
+    dibujarHielo();
+    window.addEventListener("resize", ajustarCanvas);
+
+}
 
 confetti({
     particleCount:180,
     spread:90
 });
+
