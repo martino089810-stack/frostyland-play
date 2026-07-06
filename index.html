@@ -1,69 +1,202 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
+    <!-- ===================================================== -->
+    <!-- CONFIGURACIÓN -->
+    <!-- ===================================================== -->
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Frostyland Play | Descongela el Boli</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Frostyland Play | Descongela el Nuevo Sabor</title>
+
     <link rel="stylesheet" href="css/style.css">
+
 </head>
+
 <body>
 
-    <!-- Pantalla de Inicio -->
-    <div id="inicio" class="pantalla activa">
-        <div class="contenedor">
-            <img src="img/Logo-FrostylandV2.png" class="logo" alt="Frostyland Logo">
-            <h1>❄ FROSTYLAND PLAY ❄</h1>
-            <h2>DESCONGELA EL BOLI</h2>
-            <h3>BUBULUBÚ</h3>
-            <button id="btnInicio">COMENZAR</button>
-        </div>
-    </div>
+    <!-- ===================================================== -->
+    <!-- PANTALLA DE INICIO -->
+    <!-- ===================================================== -->
 
-    <!-- Pantalla de Instrucciones -->
-    <div id="instrucciones" class="pantalla oculto">
-        <div class="contenedor">
-            <h2>📜 INSTRUCCIONES</h2>
-            <p>🧊 Rompe completamente el hielo.</p>
-            <p>🎁 Descubre tu premio.</p>
-            <p>📸 Si ganas, toma captura.</p>
-            <p>📲 Envíala por WhatsApp.</p>
-            <p>🏆 Los primeros 3 ganan.</p>
-            <div id="contador">01:00:00</div>
-            <button id="btnJugar">ESTOY LISTO</button>
-        </div>
-    </div>
+    <section id="pantallaInicio" class="pantalla">
 
-    <!-- Pantalla de Juego -->
-    <div id="juego" class="pantalla oculto">
         <div class="contenedor">
-            <h3>🧊 DESCONGELA EL BOLI 🧊</h3>
-            <div id="zonaJuego">
-                <img id="premioImagen" src="" alt="Premio">
-                <canvas id="canvas" width="320" height="320"></canvas>
-            </div>
-            <!-- Barra de progreso DENTRO del contenedor del juego -->
-            <div id="barra">
-                <div id="progreso"></div>
-            </div>
-            <p id="porcentaje">0%</p>
-        </div>
-    </div>
 
-    <!-- Pantalla de Premio -->
-<div id="premio" class="pantalla oculto">
-    <div class="contenedor">
-        <img id="imagenPremio" src="" width="180" alt="Premio">
-        <h2 id="tituloPremio"></h2>
-        <p id="textoPremio"></p>
-        <a id="whatsapp" href="#" target="_blank">
-            <button>📲 ENVIAR CAPTURA</button>
-        </a>
-        <button id="btnReiniciar" style="margin-top: 12px; background: linear-gradient(90deg, #667eea, #764ba2); color: white;">
-            🔄 JUGAR DE NUEVO
-        </button>
-    </div>
+            <!-- Logo -->
+
+            <img
+                src="img/logo-frostylandV2.png"
+                alt="Frostyland"
+                id="logo">
+
+            <!-- Título -->
+
+            <h2 id="titulo">
+
+                DESCONGELA
+                <br>
+                EL NUEVO SABOR
+
+            </h2>
+
+            <!-- Botón -->
+
+            <button id="btnComenzar">
+
+                COMENZAR
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <section id="pantallaInstrucciones" class="pantalla oculto">
+
+<div class="contenedor">
+
+   <!-- SEGUNDA PANTALLA -->
+
+<img
+src="img/logo-frostylandV2.png"
+class="logoPequeño">
+
+<h1 class="titulo2">
+
+🧊 TU MISIÓN 🧊 
+
+</h1>
+
+<div class="cajaInstrucciones">
+
+<p>🍫 Descubre el nuevo sabor de Frostyland</p>
+
+<p>🎁 Raspa todo el bloque de hielo.</p>
+
+<p>📸 Toma captura de tu premio</p>
+
+<p>📲 Envíala por WhatsApp.</p>
+
+<p>🏆 Solo los primeros 3 ganan</p>
+
 </div>
 
-    <script src="js/app.js"></script>
+<div id="contador">
+
+01:00:00
+
+</div>
+
+<button id="btnAceptar">
+
+ACEPTO EL RETO
+
+</button>
+
+</div>
+
+</section>
+
+<!--====================================
+PANTALLA 3
+JUEGO
+=====================================-->
+
+<section id="pantallaJuego" class="pantalla oculto">
+
+    <div class="contenedorJuego">
+
+        <h2 class="tituloJuego2">
+
+            🧊 DESCONGELA EL BOLI 🧊
+
+        </h2>
+
+        <p class="subtituloJuego">
+
+            ¡Rompe completamente el hielo!
+
+        </p>
+
+        <div id="zonaJuego">
+
+            <!-- Premio oculto -->
+            <img
+                id="premioOculto"
+                src=""
+                alt="Premio">
+
+            <!-- Canvas del hielo -->
+            <canvas
+                id="canvas"
+                width="340"
+                height="340">
+            </canvas>
+
+        </div>
+
+        <!-- Barra -->
+
+        <div id="barra">
+
+            <div id="progreso"></div>
+
+        </div>
+
+        <p id="porcentaje">
+
+            0%
+
+        </p>
+
+    </div>
+
+</section>
+
+<!--==================================
+VENTANA EMERGENTE DEL PREMIO
+===================================-->
+
+<div id="modalPremio" class="oculto">
+
+    <div class="cajaPremio">
+
+        <h2 id="tituloPremio">
+
+            🎉 ¡FELICIDADES! 🎉
+
+        </h2>
+
+        <img
+            id="imagenPremio"
+            src="">
+
+        <p id="textoPremio">
+
+        </p>
+
+        <a
+    id="btnWhatsapp"
+    class="btnWhatsapp"
+    target="_blank">
+
+    📲 ENVIAR CAPTURA
+
+</a>
+</a>
+
+    </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+
+<script src="js/app.js"></script>
+
 </body>
+
 </html>

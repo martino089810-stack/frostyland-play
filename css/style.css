@@ -1,305 +1,529 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/*======================================================
+                CONFIGURACIÓN GENERAL
+======================================================*/
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
 }
 
-body {
-    font-family: Arial, sans-serif;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(180deg, #02187c, #0050a5);
-    overflow: hidden;
-    padding: 15px;
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:linear-gradient(180deg,#0A3FA8,#0D5BE1);
+    overflow-x:hidden;
+    overflow-y:auto;
 }
 
-/* Pantallas */
-.pantalla {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.6s ease;
-    padding: 15px;
+
+/*======================================================
+                PANTALLA
+======================================================*/
+
+#pantallaInicio{
+
+    width:100vw;
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
 }
 
-.pantalla.activa {
-    opacity: 1;
-    pointer-events: all;
-    transform: scale(1);
+
+/*======================================================
+                CONTENEDOR
+======================================================*/
+
+.contenedor{
+
+    width:92%;
+    max-width:430px;
+
+    background:rgb(164, 198, 238);
+
+    border-radius:35px;
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:
+
+    0 15px 35px rgba(0,0,0,.35);
+
 }
 
-.pantalla.oculto {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(0.8);
+
+/*======================================================
+                LOGO
+======================================================*/
+
+#logo{
+
+    width:265px;
+
+    margin-bottom:1px;
+
 }
 
-.contenedor {
-    width: 95%;
-    max-width: 480px;
-    background: white;
-    border-radius: 25px;
-    padding: 30px 25px;
-    text-align: center;
-    box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.35);
-    animation: entrada 0.8s ease;
-    max-height: 90vh;
-    overflow-y: auto;
+
+/*======================================================
+                TÍTULO
+======================================================*/
+
+#titulo{
+text-align: center; 
+font-family: Arial Black; 
+font-weight: bold; 
+font-size: 36px; 
+color: #ffffff; 
+text-shadow: 0 1px 0 #ec4c4c, 0 2px 0 #ec4c4c, 0 3px 0 #ec4c4c, 0 4px 0 #aaa, 0 5px 0 #acacac, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 2, 104, 0.1), 0 10px 30px rgba(0,0,0,0.3), 0 300px 500px rgba(0,0,0,0.2), 0 -8px 10px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.2), 0 20px 20px rgba(0,0,0,0.15);
+
 }
 
-/* Logo */
-.logo {
-    width: 140px;
-    max-width: 60%;
-    margin-bottom: 20px;
+
+
+/*======================================================
+                BOTÓN
+======================================================*/
+
+#btnComenzar{
+
+    margin-top:45px;
+
+    width:100%;
+
+    padding:22px;
+
+    border:none;
+
+    border-radius:50px;
+
+    cursor:pointer;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:white;
+
+    background:
+
+    linear-gradient(
+
+    180deg,
+
+    #ff3fb0,
+
+    #ff0080
+
+    );
+
+    box-shadow:
+
+    0 8px 0 #b40056;
+
+    transition:.25s;
+
 }
 
-/* Títulos */
-h1 {
-    color: #008cff;
-    font-size: clamp(24px, 5vw, 32px);
-    margin-bottom: 10px;
-    word-wrap: break-word;
+
+#btnComenzar:hover{
+
+    transform:scale(1.05);
+
 }
 
-h2 {
-    color: #ff2f5b;
-    font-size: clamp(20px, 4.5vw, 28px);
-    margin-bottom: 15px;
-    word-wrap: break-word;
+
+#btnComenzar:active{
+
+    transform:translateY(5px);
+
+    box-shadow:none;
+
 }
 
-h3 {
-    color: #ff006a;
-    font-size: clamp(22px, 5vw, 30px);
-    margin-bottom: 20px;
-    word-wrap: break-word;
+
+
+/*==================================
+2DA PANTALLA INSTRUCCIONES
+===================================*/
+
+.logoPequeño{
+
+width:130px;
+
+margin-bottom:15px;
+
 }
 
-/* Texto */
-p {
-    font-size: clamp(16px, 3vw, 18px);
-    color: #555;
-    margin-bottom: 15px;
-    line-height: 28px;
+.titulo2{
+
+font-size:35px;
+text-align:center;
+color:#010029;
+font-weight:900;
+text-shadow:3px 3px 0 rgb(216, 206, 228);
+margin-bottom:25px;
+
 }
 
-/* Botones */
-button {
-    width: 100%;
-    padding: 18px;
-    border: none;
-    border-radius: 15px;
-    font-size: clamp(18px, 4vw, 22px);
-    font-weight: bold;
-    cursor: pointer;
-    background: linear-gradient(90deg, #FFD700, #FFA500);
-    color: #222;
-    transition: all 0.3s ease;
-    touch-action: manipulation;
+.cajaInstrucciones{
+
+background:#f3f8ff;
+
+padding:25px;
+
+border-radius:25px;
+
+margin-bottom:25px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+
 }
 
-button:hover {
-    transform: scale(1.03);
+.cajaInstrucciones p{
+
+font-size:20px;
+
+font-weight:bold;
+
+margin:15px;
+
 }
 
-button:active {
-    transform: scale(0.97);
+#contador{
+
+font-size:42px;
+
+font-weight:900;
+
+color:#ff006a;
+
+margin-bottom:30px;
+
+text-shadow:2px 2px white;
+
 }
 
-/* Input */
-input {
-    width: 100%;
-    padding: 15px;
-    margin-top: 15px;
-    border-radius: 12px;
-    border: 2px solid #9ddcff;
-    font-size: clamp(16px, 3vw, 18px);
+#btnAceptar{
+    display:block;
+    margin:20px auto 0 auto;
+    padding:18px 45px;
+    font-size:28px;
+    border:none;
+    border-radius:60px;
+    background:linear-gradient(#FFD500,#FF9800);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    position:relative;
+    z-index:10;
 }
 
-input:focus {
-    outline: none;
-    border: 2px solid #00a8ff;
+#btnAceptar:hover{
+
+transform:scale(1.05);
+
 }
 
-/* Contador */
-#contador {
-    margin: 20px 0;
-    font-size: clamp(30px, 7vw, 35px);
-    font-weight: bold;
-    color: #00a8ff;
+/*=====================================
+PANTALLA JUEGO
+======================================*/
+
+.contenedorJuego{
+
+    width:95%;
+    max-width:500px;
+
+    background:white;
+
+    border-radius:35px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+
 }
 
-/* Zona de juego */
-#zonaJuego {
-    position: relative;
-    width: 100%;
-    max-width: 330px;
-    margin: 0 auto 20px;
-    aspect-ratio: 1/1;
+.tituloJuego2{
+
+    font-size:38px;
+    margin:5px 0;
+    color:#ff0077;
+
+    font-weight:900;
+
+    text-shadow:
+    2px 2px white,
+    0 5px 10px rgba(0,0,0,.25);
+
 }
 
-#premioImagen {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    border-radius: 20px;
-    object-fit: cover;
-    pointer-events: none;
+.subtituloJuego{
+
+    font-size:20px;
+    margin:5px 0 10px 0;
+
+    color:#555;
+
+    margin-bottom:20px;
+
+}
+#barra{
+    margin-top:15px;
 }
 
-canvas {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100% !important;
-    height: 100% !important;
-    border-radius: 30px;
-    cursor: pointer;
-    touch-action: none;
+#porcentaje{
+    margin-top:8px;
 }
 
-/* Barra de progreso - AHORA VISIBLE */
-#barra {
-    width: 100%;
-    height: 18px;
-    background: #ddd;
-    border-radius: 30px;
-    overflow: hidden;
-    margin: 15px 0 8px;
+
+/*ZONA DE JUEGO*/
+
+#zonaJuego{
+
+    position:relative;
+
+    width:320px;
+    height:320px;
+    margin:auto;
+
 }
 
-#progreso {
-    width: 0%;
-    height: 100%;
-    background: linear-gradient(90deg, #00c853, #4caf50);
-    transition: width 0.3s ease;
-    border-radius: 30px;
+#premioOculto{
+
+    position:absolute;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+    left:0;
+
+    top:0;
+
 }
 
-#porcentaje {
-    font-size: clamp(16px, 3vw, 20px);
-    font-weight: bold;
-    color: #008cff;
-    margin: 5px 0 0;
+#canvas{
+    position:absolute;
+    left:0;
+    top:0;
+    touch-action:none;
 }
 
-/* Animación */
-@keyframes entrada {
-    from {
-        opacity: 0;
-        transform: translateY(60px) scale(0.95);
+#barra{
+
+    width:100%;
+
+    height:22px;
+
+    background:#ddd;
+
+    border-radius:50px;
+
+    overflow:hidden;
+
+    margin-top:30px;
+
+}
+
+#progreso{
+
+    width:0%;
+
+    height:100%;
+
+    border-radius:50px;
+
+    background:linear-gradient(
+    90deg,
+    #00d84a,
+    #00ff7b
+    );
+
+    transition:.2s;
+
+}
+
+#porcentaje{
+
+    font-size:28px;
+
+    color:#0088ff;
+
+    font-weight:bold;
+
+    margin-top:12px;
+
+}   
+
+.oculto {
+    display: none !important;
+}
+
+button{
+    border:5px solid red;
+}
+
+/* =========================================
+   CENTRAR TODAS LAS PANTALLAS
+========================================= */
+
+.pantalla{
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+/* =========================================
+   EVITAR DESBORDAMIENTO HORIZONTAL
+========================================= */
+
+body{
+    overflow-x:hidden;
+}
+
+/* =========================================
+   AJUSTE RESPONSIVE GENERAL
+========================================= */
+
+.contenedorJuego{
+    width:92%;
+    max-width:420px;
+    padding:20px;
+    border-radius:30px;
+}
+
+#pantallaJuego{
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+/*======================================
+MODAL PREMIO
+=======================================*/
+
+#modalPremio{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.65);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999;
+
+}
+
+.cajaPremio{
+
+    width:90%;
+
+    max-width:420px;
+
+    background:white;
+
+    border-radius:35px;
+
+    padding:35px;
+
+    text-align:center;
+
+    animation:pop .35s;
+
+}
+
+.cajaPremio img{
+
+    width:220px;
+
+    margin:20px auto;
+
+}
+
+@keyframes pop{
+
+    from{
+
+        transform:scale(.5);
+
+        opacity:0;
+
     }
-    to {
-        opacity: 1;
-        transform: translateY(0px) scale(1);
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+
     }
+
 }
 
-/* Responsive para móviles pequeños */
-@media (max-width: 480px) {
-    .contenedor {
-        padding: 20px 15px;
-        border-radius: 20px;
-    }
-    
-    .logo {
-        width: 100px;
-    }
-    
-    button {
-        padding: 14px;
-        font-size: 18px;
-    }
-    
-    #zonaJuego {
-        max-width: 280px;
-    }
-    
-    #barra {
-        height: 14px;
-    }
+/*==================================
+BOTÓN WHATSAPP
+===================================*/
+
+.btnWhatsapp{
+
+    display:block;
+
+    width:100%;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    padding:18px;
+
+    margin-top:20px;
+
+    border-radius:60px;
+
+    background:linear-gradient(#28d146,#0da832);
+
+    color:white;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:0 8px 15px rgba(0,0,0,.25);
+
+    transition:.25s;
+
 }
 
-/* Responsive para móviles muy pequeños */
-@media (max-width: 380px) {
-    .contenedor {
-        padding: 15px 10px;
-        border-radius: 15px;
-    }
-    
-    .logo {
-        width: 80px;
-        margin-bottom: 12px;
-    }
-    
-    #zonaJuego {
-        max-width: 220px;
-    }
-    
-    button {
-        padding: 12px;
-        font-size: 16px;
-    }
-    
-    #barra {
-        height: 12px;
-    }
+.btnWhatsapp:hover{
+
+    transform:scale(1.05);
+
 }
 
-/* Responsive para tablets */
-@media (min-width: 768px) {
-    .contenedor {
-        padding: 40px 35px;
-        max-width: 550px;
-    }
-    
-    #zonaJuego {
-        max-width: 380px;
-    }
-    
-    .logo {
-        width: 180px;
-    }
-}
-
-/* Opcional: Estilo más elaborado para el botón de reinicio */
-#btnReiniciar {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
-    color: white !important;
-    margin-top: 12px;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s ease;
-}
-
-#btnReiniciar::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s ease;
-}
-
-#btnReiniciar:hover::before {
-    left: 100%;
-}
-
-#btnReiniciar:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 8px 25px rgba(245, 87, 108, 0.5);
-}
-
-#btnReiniciar:active {
-    transform: scale(0.95);
-}
