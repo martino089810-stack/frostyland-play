@@ -296,23 +296,22 @@ function finalizarJuego(){
         .remove("oculto");
 
     },400);
-const mensaje =
-`Hola Frostyland 🍧
+    const mensaje =
+    `Hola Frostyland 🍧
 
-¡Acabo de ganar un ${premioActual.nombre}!
+    ¡Acabo de ganar un ${premioActual.nombre}!
 
-Adjunto mi captura.`;
+    Adjunto mi captura.`;
 
-const enlace =
-"https://wa.me/5212228653619?text=" +
-encodeURIComponent(mensaje);
+    const enlace =
+    "https://wa.me/5212228653619?text=" +
+    encodeURIComponent(mensaje);
 
-document.getElementById("btnWhatsapp").href = enlace;
+    document.getElementById("btnWhatsapp").href = enlace;
 
-console.log(enlace);
-}
+    console.log(enlace);
 
-if(premioActual.nombre=="PERDER"){
+    if(premioActual.nombre=="PERDER"){
 
     sndLose.play();
 
@@ -321,11 +320,17 @@ else{
 
     sndWin.play();
 
+    
+
 }
 juegoFinalizado = true;
 canvas.style.pointerEvents="none";
 sndIce.pause();
 sndIce.currentTime = 0;
+
+}
+
+
 
 
 confetti({
