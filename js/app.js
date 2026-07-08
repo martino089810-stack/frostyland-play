@@ -199,7 +199,7 @@ canvas.addEventListener("mousedown", ()=>{
     sndIce.play();
 
 });
-window.addEventListener("mouseup", ()=>{
+canvas.addEventListener("mouseup", ()=>{
 
     raspando = false;
 
@@ -217,7 +217,7 @@ canvas.addEventListener("touchstart", ()=>{
 
 });
 
-window.addEventListener("touchend", ()=>{
+canvas.addEventListener("touchend", ()=>{
 
     raspando = false;
 
@@ -272,14 +272,10 @@ function actualizarProgreso(){
 function finalizarJuego(){
 
     juegoFinalizado = true;
+
     raspando = false;
 
-    canvas.style.pointerEvents = "none";
-
-    sndIce.pause();
-    sndIce.currentTime = 0;
-
-    // Mostrar premio
+    // llenar ventana
 
     document.getElementById("imagenPremio").src =
     premioActual.imagen;
@@ -290,38 +286,7 @@ function finalizarJuego(){
     document.getElementById("tituloPremio").innerHTML =
     premioActual.titulo;
 
-
-    // SONIDO
-
-    if(premioActual.nombre=="PERDER"){
-
-        sndLose.currentTime = 0;
-        sndLose.play();
-
-    }
-    else{
-
-        sndWin.currentTime = 0;
-        sndWin.play();
-
-    }
-
-
-    // WhatsApp
-
-    const mensaje =
-`Hola Frostyland 🍧
-
-¡Acabo de ganar un ${premioActual.nombre}!
-
-Adjunto mi captura.`;
-
-    document.getElementById("btnWhatsapp").href =
-    "https://wa.me/5212228653619?text=" +
-    encodeURIComponent(mensaje);
-
-
-    // Mostrar ventana
+    // mostrar popup
 
     setTimeout(()=>{
 
@@ -331,8 +296,36 @@ Adjunto mi captura.`;
         .remove("oculto");
 
     },400);
+const mensaje =
+`Hola Frostyland 🍧
+
+¡Acabo de ganar un ${premioActual.nombre}!
+
+Adjunto mi captura.`;
+
+const enlace =
+"https://wa.me/5212228653619?text=" +
+encodeURIComponent(mensaje);
+
+document.getElementById("btnWhatsapp").href = enlace;
+
+console.log(enlace);
+}
+
+if(premioActual.nombre=="PERDER"){
+
+    sndLose.play();
 
 }
+else{
+
+    sndWin.play();
+
+}
+juegoFinalizado = true;
+canvas.style.pointerEvents="none";
+sndIce.pause();
+sndIce.currentTime = 0;
 
 
 confetti({
