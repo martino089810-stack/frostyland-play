@@ -320,6 +320,8 @@ PANTALLA JUEGO
     left:0;
     top:0;
     touch-action:none;
+    width:100%;
+    height:100%;
 }
 
 #barra{
