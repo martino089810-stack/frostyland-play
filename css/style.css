@@ -293,11 +293,8 @@ PANTALLA JUEGO
 
     position:relative;
 
-    width:100%;
-    max-width:340px;
-
-    aspect-ratio:1/1;
-
+    width:320px;
+    height:320px;
     margin:auto;
 
 }
@@ -319,15 +316,10 @@ PANTALLA JUEGO
 }
 
 #canvas{
-
     position:absolute;
-
     left:0;
     top:0;
-
-    width:100%;
-    height:100%;
-
+    touch-action:none;
 }
 
 #barra{
